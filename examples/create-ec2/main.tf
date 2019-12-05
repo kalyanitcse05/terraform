@@ -18,7 +18,7 @@ resource "aws_instance" "my-instance" {
         ami = "ami-0c5204531f799e0c6"
 	instance_type = "t2.micro"
         #vpc_id = "vpc-d67dc4b0"
-	key_name = "8KMILES-AWS-MS-OPERATIONS-KEY"
+	key_name = "AWS-MS-OPERATIONS-KEY"
 	tags = {
 		Name = "Tf-test-user-data123"	
 	}
@@ -36,8 +36,8 @@ provisioner "remote-exec" {
   }
   #### Copy a local file to ec2 instance
 provisioner "file" {
-    source      = "kalyani.txt"
-    destination = "/tmp/kalyani/kalyani.txt"
+    source      = "test.txt"
+    destination = "/tmp/test.txt"
 }
 
 
@@ -45,7 +45,7 @@ provisioner "file" {
     type     = "ssh"
     user     = "ec2-user"
     password = ""
-    private_key = file("/Users/thummapk/Documents/keys/8KMILES-AWS-MS-OPERATIONS-KEY.pem")
+    private_key = file("/Users/username/Documents/keys/AWS-MS-OPERATIONS-KEY.pem")
     host = self.private_ip
   }
 }
